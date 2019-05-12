@@ -16,12 +16,15 @@
     "AWS",
     "cfn"
   ],
-  "author": "hydreio",
+  "author": "Hydre",
   "license": "MIT",
+	"homepage": "https://hydre.io",
+	"publishConfig": {
+		"access": "public"
+	},
   "bugs": {
     "url": "https://github.com/HydreIO/cfn/issues"
   },
-  "homepage": "https://github.com/HydreIO/cfn#readme",
   "dependencies": {
     "@hydre/commons": "^1.0.6",
     "aws-sdk": "^2.453.0",
