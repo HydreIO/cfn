@@ -16,6 +16,8 @@
 
 Create, update, and delete your cloudformation stacks with ease
 
+![](https://i.imgur.com/WNmQXz7.png)
+
 ### Install
 
 `npm i @hydre/cfn`
@@ -24,6 +26,11 @@ Create, update, and delete your cloudformation stacks with ease
 
 ```js
 import CFN, { param } from '@hydre/cfn'
+```
+
+> To print log you'll need to add the DEBUG env variable with `cfn*`
+```
+DEBUG='cfn*' node my-app.js
 ```
 
 Create an api instance (you can create as many as you want with different regions or keys)
