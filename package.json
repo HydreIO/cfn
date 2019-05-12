@@ -5,9 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "prepack": "npm run build",
-    "build": "babel src -d lib",
-    "test": "babel-node ./test/index.js | tap-spec",
-    "ntest": "babel-node ./test/index.js | tnyan"
+    "build": "babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -42,9 +40,6 @@
     "@babel/plugin-proposal-function-bind": "^7.2.0",
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@babel/plugin-proposal-private-methods": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
-    "blue-tape": "^1.0.0",
-    "tap-nyan": "^1.1.0",
-    "tap-spec": "^5.0.0"
+    "@babel/preset-env": "^7.4.4"
   }
 }
