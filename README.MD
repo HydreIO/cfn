@@ -37,7 +37,7 @@ new CFN(apiKey, secretKey, region)
 ```
 
 ```js
-.createOrUpdate(name, template[, options])
+.createOrUpdate(name, template[, params][, options])
 // [, option] represent default params from the aws sdk when you either create or update a stack
 // if you provide a StackName field in the option param it will override the name param
 ```
@@ -77,57 +77,55 @@ void (async function() {
 ### Advanced usage
 
 ```js
-api.createOrUpdate(,,{
-	{
-  StackName: 'STRING_VALUE', /* required */
-  Capabilities: [
-    CAPABILITY_IAM | CAPABILITY_NAMED_IAM | CAPABILITY_AUTO_EXPAND,
-    /* more items */
-  ],
-  ClientRequestToken: 'STRING_VALUE',
-  DisableRollback: true || false,
-  EnableTerminationProtection: true || false,
-  NotificationARNs: [
-    'STRING_VALUE',
-    /* more items */
-  ],
-  OnFailure: DO_NOTHING | ROLLBACK | DELETE,
-  Parameters: [
-    {
-      ParameterKey: 'STRING_VALUE',
-      ParameterValue: 'STRING_VALUE',
-      ResolvedValue: 'STRING_VALUE',
-      UsePreviousValue: true || false
-    },
-    /* more items */
-  ],
-  ResourceTypes: [
-    'STRING_VALUE',
-    /* more items */
-  ],
-  RoleARN: 'STRING_VALUE',
-  RollbackConfiguration: {
-    MonitoringTimeInMinutes: 'NUMBER_VALUE',
-    RollbackTriggers: [
-      {
-        Arn: 'STRING_VALUE', /* required */
-        Type: 'STRING_VALUE' /* required */
-      },
-      /* more items */
-    ]
-  },
-  StackPolicyBody: 'STRING_VALUE',
-  StackPolicyURL: 'STRING_VALUE',
-  Tags: [
-    {
-      Key: 'STRING_VALUE', /* required */
-      Value: 'STRING_VALUE' /* required */
-    },
-    /* more items */
-  ],
-  TemplateBody: 'STRING_VALUE',
-  TemplateURL: 'STRING_VALUE',
-  TimeoutInMinutes: 'NUMBER_VALUE'
-}
-})
+		api.createOrUpdate('','',[],{
+			StackName: 'STRING_VALUE' /* required */,
+			Capabilities: [
+				CAPABILITY_IAM | CAPABILITY_NAMED_IAM | CAPABILITY_AUTO_EXPAND
+				/* more items */
+			],
+			ClientRequestToken: 'STRING_VALUE',
+			DisableRollback: true || false,
+			EnableTerminationProtection: true || false,
+			NotificationARNs: [
+				'STRING_VALUE'
+				/* more items */
+			],
+			OnFailure: DO_NOTHING | ROLLBACK | DELETE,
+			Parameters: [
+				{
+					ParameterKey: 'STRING_VALUE',
+					ParameterValue: 'STRING_VALUE',
+					ResolvedValue: 'STRING_VALUE',
+					UsePreviousValue: true || false
+				}
+				/* more items */
+			],
+			ResourceTypes: [
+				'STRING_VALUE'
+				/* more items */
+			],
+			RoleARN: 'STRING_VALUE',
+			RollbackConfiguration: {
+				MonitoringTimeInMinutes: 'NUMBER_VALUE',
+				RollbackTriggers: [
+					{
+						Arn: 'STRING_VALUE' /* required */,
+						Type: 'STRING_VALUE' /* required */
+					}
+					/* more items */
+				]
+			},
+			StackPolicyBody: 'STRING_VALUE',
+			StackPolicyURL: 'STRING_VALUE',
+			Tags: [
+				{
+					Key: 'STRING_VALUE' /* required */,
+					Value: 'STRING_VALUE' /* required */
+				}
+				/* more items */
+			],
+			TemplateBody: 'STRING_VALUE',
+			TemplateURL: 'STRING_VALUE',
+			TimeoutInMinutes: 'NUMBER_VALUE'
+		})
 ```
