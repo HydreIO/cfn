@@ -1,6 +1,6 @@
 {
   "name": "@hydre/cfn",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Easily manage cloudformation stacks in javascript",
   "main": "lib/index.js",
   "scripts": {
@@ -18,10 +18,10 @@
   ],
   "author": "Hydre",
   "license": "MIT",
-	"homepage": "https://hydre.io",
-	"publishConfig": {
-		"access": "public"
-	},
+  "homepage": "https://hydre.io",
+  "publishConfig": {
+    "access": "public"
+  },
   "bugs": {
     "url": "https://github.com/HydreIO/cfn/issues"
   },
