@@ -24,6 +24,31 @@ Create, update, and delete your cloudformation stacks with ease
 
 ```js
 import CFN, { param } from '@hydre/cfn'
+```
+
+Create an api instance (you can create as many as you want with different regions or keys)
+```js
+new CFN(apiKey, secretKey, region)
+```
+
+```js
+.validate(template)
+```
+
+```js
+.createOrUpdate(name, template[, options])
+// [, option] represent default params from the aws sdk when you either create or update a stack
+// if you provide a StackName field in the option param it will override the name param
+```
+
+```js
+.delete(name)
+```
+
+### Exemple:
+
+```js
+import CFN, { param } from '@hydre/cfn'
 
 const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = process.env
 const api = new CFN(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, 'us-west-1')
