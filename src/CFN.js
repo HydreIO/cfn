@@ -24,30 +24,34 @@ export default class CFN {
 					},
 					(err, data) => {
 						if (err) rej(err)
-						else res(data)
+						else {
+							cfnStream(this.api, name)
+								.on(
+									'data',
+									({
+										Timestamp,
+										ResourceType,
+										LogicalResourceId,
+										ResourceStatus,
+										ResourceStatusReason
+									}) => {
+										debug.extend(LogicalResourceId)(
+											`[${ResourceType}] ${states[ResourceStatus]} ${
+												ResourceStatusReason ? `(${ResourceStatusReason})` : ''
+											}`
+										)
+									}
+								)
+								.on('end', async () => {
+									debug.extend(name)(
+										`was ${alreadyExist ? 'updated' : 'created'} ${'successfully'.green}`
+									)
+									res(data)
+								})
+						}
 					}
 				)
 			})
-			cfnStream(this.api, name)
-				.on(
-					'data',
-					({
-						Timestamp,
-						ResourceType,
-						LogicalResourceId,
-						ResourceStatus,
-						ResourceStatusReason
-					}) => {
-						debug.extend(LogicalResourceId)(
-							`[${ResourceType}] ${states[ResourceStatus]} ${
-								ResourceStatusReason ? `(${ResourceStatusReason})` : ''
-							}`
-						)
-					}
-				)
-				.on('end', async () => {
-					debug.extend(name)(`was ${alreadyExist ? 'updated' : 'created'} ${'successfully'.green}`)
-				})
 		} catch ({ message }) {
 			debug.extend('err')(message)
 		}
@@ -78,6 +82,7 @@ export default class CFN {
 						)
 						.on('end', async () => {
 							debug.extend(StackName)(`was deleted ${'successfully'.green}`)
+							res(data)
 						})
 				}
 			})
