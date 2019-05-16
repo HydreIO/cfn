@@ -84,9 +84,10 @@ export default class CFN {
 		})
 	}
 
-	async validate(template) {
+	async validate(template, name = '') {
 		const TemplateBody = JSON.stringify(template)
-		const check = debug.extend('check')
+		let check = debug.extend('check')
+		if (name) check = check.extend(name)
 		check('Validating template')
 		return new Promise((res, rej) => {
 			this.api.validateTemplate({ TemplateBody }, (err, data) => {

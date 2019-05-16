@@ -38,16 +38,25 @@ Create an api instance (you can create as many as you want with different region
 ```js
 new CFN(apiKey, secretKey, region)
 ```
+> All functions return a promise
+
+Validate a stack (resolve to true or false)
 
 ```js
-.validate(template)
+// the template as a JS object
+// the optional name for debug logs purpose
+.validate(template[, name])
 ```
 
+Create or update a stack (resolve to void or throw an err)
+
 ```js
-.createOrUpdate(name, template[, params][, options])
 // [, option] represent default params from the aws sdk when you either create or update a stack
 // if you provide a StackName field in the option param it will override the name param
+.createOrUpdate(name, template[, params][, options])
 ```
+
+Delete a stack (resolve to void or throw an err)
 
 ```js
 .delete(name)
@@ -68,7 +77,7 @@ const template = {
 }
 
 void (async function() {
-	await api.validate(template) // true  | false
+	await api.validate(template)
 
 	await api.createOrUpdate('my-stack', template, [
 		param('key', 'value'),
