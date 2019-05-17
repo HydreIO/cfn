@@ -1,4 +1,4 @@
-![][licence] [![][npm]][npmlink] [![][travis]][travislink]
+![][licence] [![][npm]][npmlink] [![][travis]][travislink] [![][npmdl]][npmlink]
 
 # @hydre/cfn
 
@@ -13,6 +13,7 @@
 [twitterlink]: https://twitter.com/hydreio
 [discord]: https://img.shields.io/discord/265104803531587584.svg?logo=discord&style=for-the-badge
 [discordlink]: https://discord.gg/Ea6a5cn
+[npmdl]: https://img.shields.io/npm/dw/@hydre/cfn.svg?color=%239C27B0&style=for-the-badge
 
 Create, update, and delete your cloudformation stacks with ease
 
