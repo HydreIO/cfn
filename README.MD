@@ -1,8 +1,8 @@
 ![][licence] [![][npm]][npmlink] [![][travis]][travislink] [![][npmdl]][npmlink]
 
-# @hydre/cfn
+<h1 align=center>@hydre/cfn</h1>
 
-[![][discord]][discordlink] [![][twitter]][twitterlink]
+<p align=right>[![][discord]][discordlink] [![][twitter]][twitterlink]</p>
 
 [licence]: https://img.shields.io/github/license/HydreIO/cfn.svg?style=for-the-badge
 [npm]: https://img.shields.io/npm/v/@hydre/cfn.svg?logo=npm&style=for-the-badge
@@ -19,17 +19,20 @@ Create, update, and delete your cloudformation stacks with ease
 
 ![](https://i.imgur.com/WNmQXz7.png)
 
-### Install
+## Install
 
-`npm i @hydre/cfn`
+```
+npm i @hydre/cfn
+```
 
-### Use:
+## Use:
 
 ```js
 import CFN, { param } from '@hydre/cfn'
 ```
 
-> To print log you'll need to add the DEBUG env variable with `cfn*`
+> To print logs you'll need to add the DEBUG env variable with `cfn*`
+
 ```
 DEBUG='cfn*' node my-app.js
 ```
@@ -38,7 +41,12 @@ Create an api instance (you can create as many as you want with different region
 
 ```js
 new CFN(apiKey, secretKey, region)
+
+// you can also use AWS_PROFILE env variable or AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY with a custom region
+new CFN(...[, , region])
+new CFN()
 ```
+
 > All functions return a promise
 
 Validate a stack (resolve to true or false)
@@ -68,8 +76,8 @@ Delete a stack (resolve to void or throw an err)
 ```js
 import CFN, { param } from '@hydre/cfn'
 
-const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = process.env
-const api = new CFN(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, 'us-west-1')
+const { AWS_KEY_FOO, AWS_SECRET_FOO } = process.env
+const api = new CFN(AWS_KEY_FOO, AWS_SECRET_FOO, 'us-west-1')
 
 const template = {
 	AWSTemplateFormatVersion: '2010-09-09',
@@ -94,7 +102,7 @@ void (async function() {
 ### Advanced usage
 
 ```js
-api.createOrUpdate('','',[],{
+api.createOrUpdate(...[, , ,], {
 	StackName: 'STRING_VALUE' /* required */,
 	Capabilities: [
 		CAPABILITY_IAM | CAPABILITY_NAMED_IAM | CAPABILITY_AUTO_EXPAND
