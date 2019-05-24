@@ -2,7 +2,7 @@
 
 <h1 align=center>@hydre/cfn</h1>
 
-<p align=right>[![][discord]][discordlink] [![][twitter]][twitterlink]</p>
+[![][discord]][discordlink]{: align=right} [![][twitter]][twitterlink]
 
 [licence]: https://img.shields.io/github/license/HydreIO/cfn.svg?style=for-the-badge
 [npm]: https://img.shields.io/npm/v/@hydre/cfn.svg?logo=npm&style=for-the-badge
