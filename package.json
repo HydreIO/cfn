@@ -7,6 +7,9 @@
     "prepack": "npm run build",
     "build": "babel src -d lib",
     "test": "babel-node test | tap-spec",
+    "patch": "npm version patch",
+    "minor": "npm version minor",
+    "major": "npm version major",
     "postversion": "git push && git push --tags"
   },
   "repository": {
@@ -28,7 +31,7 @@
     "url": "https://github.com/HydreIO/cfn/issues"
   },
   "dependencies": {
-    "@hydre/commons": "^1.0.15",
+    "@hydre/commons": "^1.0.17",
     "aws-sdk": "^2.465.0",
     "cfn-stack-event-stream": "^1.0.1",
     "colors": "^1.3.3",
