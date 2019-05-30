@@ -1,6 +1,6 @@
 {
   "name": "@hydre/cfn",
-  "version": "1.3.0-0",
+  "version": "1.3.0-stable.0",
   "description": "Easily manage cloudformation stacks in javascript",
   "main": "lib/index.js",
   "scripts": {
