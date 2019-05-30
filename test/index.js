@@ -37,7 +37,8 @@ import Cfn from '../src/domain/CFN'
 	const name = 'test'
 
 	const valid = await cfn.validate({})
-	'should resolve to true when the template is valid'.because(valid).isTrue()
+	'should resolve to t
+	rue when the template is valid'.because(valid).isTrue()
 
 	sdk.validate = () => throw new Error('invalid')
 	const valid2 = await cfn.validate({})
