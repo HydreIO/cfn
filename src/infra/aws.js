@@ -2,7 +2,7 @@ import AWS from 'aws-sdk'
 import cfnStream from 'cfn-stack-event-stream'
 import { cache } from '@hydre/commons'
 
-export class SDK {
+export default class SDK {
 	constructor(key, secret, region) {
 		Object.assign(this, { key, secret, region })
 	}
