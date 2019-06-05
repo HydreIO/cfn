@@ -16,7 +16,7 @@ export default class SDK {
 	}
 
 	async deleteStack(options) {
-		return this.call('deleteStack')
+		return this.call('deleteStack', options)
 	}
 
 	async validateTemplate(options) {
