@@ -1,23 +1,18 @@
-![][licence] [![][npm]][npmlink] [![][travis]][travislink] [![][npmdl]][npmlink]
-
 <h1 align=center>@hydre/cfn</h1>
+<p align=center>
+  <img src="https://img.shields.io/github/license/hydreio/cfn.svg?style=for-the-badge" />
+  <a href="https://www.npmjs.com/package/@hydre/cfn">
+    <img src="https://img.shields.io/npm/v/@hydre/cfn.svg?logo=npm&style=for-the-badge" />
+  </a>
+  <img src="https://img.shields.io/npm/dw/@hydre/cfn?logo=npm&style=for-the-badge" />
+  <img src="https://img.shields.io/github/workflow/status/hydreio/cfn/CI?logo=Github&style=for-the-badge" />
+</p>
 
-[![][discord]][discordlink] [![][twitter]][twitterlink]
+<h3 align=center>Create, update, and delete your cloudformation stacks with ease</h3>
 
-[licence]: https://img.shields.io/github/license/HydreIO/cfn.svg?style=for-the-badge
-[npm]: https://img.shields.io/npm/v/@hydre/cfn.svg?logo=npm&style=for-the-badge
-[npmlink]: https://www.npmjs.com/package/@hydre/cfn
-[travis]: https://img.shields.io/travis/com/HydreIO/cfn.svg?logo=travis&style=for-the-badge
-[travislink]: https://travis-ci.com/HydreIO/cfn
-[twitter]: https://img.shields.io/badge/follow-us-blue.svg?logo=twitter&style=for-the-badge
-[twitterlink]: https://twitter.com/hydreio
-[discord]: https://img.shields.io/discord/398114799776694272.svg?logo=discord&style=for-the-badge
-[discordlink]: https://discord.gg/bRSpRpD
-[npmdl]: https://img.shields.io/npm/dw/@hydre/cfn.svg?color=%239C27B0&style=for-the-badge
-
-Create, update, and delete your cloudformation stacks with ease
-
-![](https://i.imgur.com/WNmQXz7.png)
+<p align=center>
+	<img src="https://i.imgur.com/WNmQXz7.png" />
+</p>
 
 ## Install
 
