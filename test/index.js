@@ -1,45 +1,76 @@
 import '@hydre/doubt'
-import Sdk from './aws.mock'
-import Cfn from '../src/domain/CFN'
+import Sdk from './aws.mock.js'
+import Cfn from '../src/domain/cfn.js'
 
 'Cfn:createOrUpdate'.doubt(async () => {
-	const sdk = new Sdk()
-	const cfn = new Cfn(sdk)
-	const name = 'test'
+  const sdk = new Sdk()
+  const cfn = new Cfn(sdk)
+  const name = 'test'
 
-	await 'should throw an error if the name argument is missing'.because(cfn.createOrUpdate).fails()
+  try {
+    await cfn.createOrUpdate()
+    throw 'created'
+  } catch (error) {
+    'createOrUpdate'
+        .should('throw an error when the name argument is missing')
+        .because(error?.message)
+        .is('Stack name missing')
+  }
 
-	await cfn.createOrUpdate(name, {})
-	"should create a stack when it doesn't exist"
-		.because(sdk.stacks.get(name)?.updateCount)
-		.isEqualTo(0)
+  await cfn.createOrUpdate(name, {})
+  'createOrUpdate'
+      .should('create a stack when it doesn\'t exist')
+      .because(sdk.stacks.get(name)?.updateCount)
+      .is(0)
 
-	await cfn.createOrUpdate(name, {})
-	'should update a stack when it alreadi exist'
-		.because(sdk.stacks.get(name)?.updateCount)
-		.isEqualTo(1)
+  await cfn.createOrUpdate(name, {})
+  'createOrUpdate'
+      .should('update a stack when it already exist')
+      .because(sdk.stacks.get(name)?.updateCount)
+      .is(1)
 })
 
 'Cfn:delete'.doubt(async () => {
-	const sdk = new Sdk()
-	const cfn = new Cfn(sdk)
-	const name = 'test'
+  const sdk = new Sdk()
+  const cfn = new Cfn(sdk)
+  const name = 'test'
 
-	"should throw an error when the stack doesn't exist".because(async () => cfn.delete(name)).fails()
-	await cfn.createOrUpdate(name, {})
-	await cfn.delete(name)
-	'should delete a stack'.because(sdk.stacks.get(name)).isUndefined()
+  try {
+    await cfn.delete(name)
+    throw 'succeed'
+  } catch (error) {
+    'delete'
+        .should('throw an error when the stack doesn\'t exist')
+        .because(error?.message)
+        .is('Stack doesn\'t exist')
+  }
+
+  await cfn.createOrUpdate(name, {})
+  await cfn.delete(name)
+  'delete'
+      .should('delete a stack')
+      .because(sdk.stacks.get(name))
+      .is(undefined)
 })
 
 'Cfn:validate'.doubt(async () => {
-	const sdk = new Sdk()
-	const cfn = new Cfn(sdk)
-	const name = 'test'
+  const sdk = new Sdk()
+  const cfn = new Cfn(sdk)
+  const valid = await cfn.validate({})
 
-	const valid = await cfn.validate({})
-	'should resolve to true when the template is valid'.because(valid).isTrue()
+  'validate'
+      .should('resolve to true when the template is valid')
+      .because(valid)
+      .is(true)
 
-	sdk.validate = () => throw new Error('invalid')
-	const valid2 = await cfn.validate({})
-	'should resolve to false when the template is not valid'.because(valid2).isFalse()
+  sdk.validate = () => {
+    throw new Error('invalid')
+  }
+
+  const invalid = await cfn.validate({})
+
+  'validate'
+      .should('resolve to false when the template is not valid')
+      .because(invalid)
+      .is(false)
 })

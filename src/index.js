@@ -1,10 +1,15 @@
 import Sdk from './infra/aws'
-import Cfn from './domain/CFN'
+import Cfn from './domain/cfn.js'
 
-export function param(ParameterKey, ParameterValue) {
-	return { ParameterKey, ParameterValue }
-}
+// eslint-disable-next-line unicorn/prevent-abbreviations
+export const param = (ParameterKey, ParameterValue) => ({
+  ParameterKey,
+  ParameterValue,
+})
 
-export function cfn(key, secret, region) {
-	return new Sdk(key, secret, region) |> new Cfn(#)
-}
+export const cfn = (
+    key, secret, region,
+) =>
+  new Cfn(new Sdk(
+      key, secret, region,
+  ))

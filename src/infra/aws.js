@@ -1,54 +1,69 @@
 import AWS from 'aws-sdk'
 import cfnStream from 'cfn-stack-event-stream'
-import { cache } from '@hydre/commons'
 
 export default class SDK {
-	constructor(key, secret, region) {
-		Object.assign(this, { key, secret, region })
-	}
+  #api
 
-	async createStack(options) {
-		return this.call('createStack', options)
-	}
+  constructor(
+      key, secret, region,
+  ) {
+    Object.assign(this, {
+      key,
+      secret,
+      region,
+    })
+  }
 
-	async updateStack(options) {
-		return this.call('updateStack', options)
-	}
+  async createStack(options) {
+    return this.call('createStack', options)
+  }
 
-	async deleteStack(options) {
-		return this.call('deleteStack', options)
-	}
+  async updateStack(options) {
+    return this.call('updateStack', options)
+  }
 
-	async validateTemplate(options) {
-		return this.call('validateTemplate', options, false)
-	}
+  async deleteStack(options) {
+    return this.call('deleteStack', options)
+  }
 
-	async describeStacks(options) {
-		return this.call('describeStacks', options, false)
-	}
+  async validateTemplate(options) {
+    return this.call(
+        'validateTemplate', options, false,
+    )
+  }
 
-	async call(name, options, stream = true) {
-		const data = await new Promise((res, rej) => {
-			this.api[name](options, (err, data) => {
-				if (err) rej(err)
-				else res(data)
-			})
-		})
-		if (stream) return this.#getStream(options)
-		else return data
-	}
+  async describeStacks(options) {
+    return this.call(
+        'describeStacks', options, false,
+    )
+  }
 
-	#getStream({ StackName }) {
-		return cfnStream(this.api, StackName)
-	}
+  async call(
+      name, options, stream = true,
+  ) {
+    const data = await new Promise((resol, rej) => {
+      this.api[name](options, (error, datas) => {
+        if (error) rej(error)
+        else resol(datas)
+      })
+    })
 
-	@cache // memoize to instanciate the api only once
-	get api() {
-		return new AWS.CloudFormation({
-			apiVersion: '2010-05-15',
-			accessKeyId: this.key,
-			secretAccessKey: this.secret,
-			region: this.region
-		})
-	}
+    if (stream) return this.getStream(options)
+    return data
+  }
+
+  getStream({ StackName }) {
+    return cfnStream(this.api, StackName)
+  }
+
+  get api() {
+    if (this.#api) return this.#api
+    this.#api = new AWS.CloudFormation({
+      apiVersion     : '2010-05-15',
+      accessKeyId    : this.key,
+      secretAccessKey: this.secret,
+      region         : this.region,
+    })
+    return this.#api
+  }
 }
